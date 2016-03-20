@@ -1,0 +1,61 @@
+---
+title: "First_part_capstone"
+author: "dogvile"
+date: "March 19, 2016"
+output: html_document
+---
+
+As first part of this Capstone Project is to download the data (https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip) that include(s) texts for twitter, news and blog activity.
+
+For the purpose of this project it will be used USA version of files.
+
+There are three phased regarding the processing of data and particularly the text.
+
+1. The downloading of files from Swiftkey
+
+2. Reading the files as utf-8 encoding (in plain english....) & assign in variables the whole sentences 
+   in a format tha can be used the appropriate processing.
+   
+3. Apply some cleaning job such lowercasing the words etc.
+
+4. Explore the whole files in terms of number of occurences of words (by plotting histogram)
+   stemming nad filtering
+   
+5. Perfom some thoughts about the prediction model that it will be used in the following 
+   asssignment
+   
+* the main package that it will be used for the purpose of this project is the "tm" package
+
+The Libriaries that will be used
+
+```{r}
+library("tm")
+library("SnowballC")
+```
+
+1. Download the file and setting as working directory the en_US version that they will be processed 
+further in the following steps
+
+```{r}
+
+#setwd("C:/capstone/final/en_US")
+#unzip("Coursera-SwiftKey.zip")
+#setwd("C:/capstone/en_US")
+```
+
+2. Reading the text files as utf-8 (more info about utf-8 -> https://en.wikipedia.org/wiki/UTF-8)
+
+```{r, echo=FALSE}
+num_lines_blogs <- readLines("en_US.blogs.txt",encoding="UTF-8")
+num_lines_twitter <- readLines("en_US.twitter.txt",encoding="UTF-8")
+num_lines_news <- readLines("en_US.news.txt",encoding="UTF-8")
+```
+
+3. Assing the text files into corpus & Apply some cleaning jobs in text files prior of processing
+
+```{r}
+news <-  VCorpus(VectorSource(num_lines_news))
+twitter <-  VCorpusVCorpus(VectorSource(num_lines_twitter))
+blog <-  VCorpusVCorpus(VectorSource(num_lines_blog))
+```
+
